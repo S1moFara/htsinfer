@@ -24,3 +24,31 @@ def infer(
     """
     # implement logic
     return "U"
+
+
+    def Generate_STAR_Index(pathTempDir, ThreadN, FastaFiles, gtf):
+        
+        '''
+        Function for the issue 26
+	    The function will call a bash script for executing STAR, that will index the input files
+	    The first argument is the path for the temporary directory
+	    The second argument is the number of threads the user wants to use
+	    The third argument is the path for the input fasta files
+	    The fourth argument is the path for the annotation file (i.e. gtf file)
+    
+	    The function will create a variable containing the path to the resulting index folder
+	    '''
+    
+	    import subprocess
+	    import os
+	    subprocess.call(['bash', './STAR_Index_generator.sh', pathTempDir, ThreadN, FastaFiles, gtf])
+	    os.chdir(pathTempDir)
+	    outputpath = os.path.abspath('Prepared_STAR_index')
+	    return outputpath
+    
+	    '''
+	    The function has been tested with the following input files:
+	    ftp://ftp.ensembl.org/pub/release-101/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.1.fa.gz (input fasta files)
+	    ftp://ftp.ensembl.org/pub/release-101/gtf/homo_sapiens/Homo_sapiens.GRCh38.101.gtf.gz (gtf file)
+	    '''
+    
