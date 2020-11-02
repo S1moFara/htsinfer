@@ -3,6 +3,7 @@ channels:
   - defaults
   - bioconda
 dependencies:
+  - STAR v2.7.6a
   - biopython=1.78
   - pip=20.2.3
   - python=3.8.5
